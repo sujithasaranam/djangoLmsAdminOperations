@@ -1,0 +1,63 @@
+Initially check for pythpn and django versions and then set up a virtual environment and then set up Django for not to disturb any other folders or applications.
+Create a project “Django-admin startproject name”
+Cd name
+Create an app inside the project
+Python manage.py startapp name
+For setting up the database with mysql. Go to the settings file and add 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'lms',
+        'USER': 'root',
+        'PASSWORD':'',
+        'HOST': '',
+        'PORT': '',
+    }
+}
+
+Now run a command with python manage.py migrate for registering the changes.
+Restful APIs are useful for several standards like html,url,json..
+For implementing restful APIs use PIP install djangorestframework
+Add rest_framework, app name in the installed apps in settings.py file for using rest framework.
+
+For storing the data in database models are to be created. With the help of models the structure will get replicated in the Database.
+class Book(models.Model):
+    Bookname=models.CharField(max_length=100)
+    Author=models.CharField(max_length=100)
+    Noofbooks=models.IntegerField()
+    Branch=models.CharField(max_length=100)
+
+After creating a model in models.py file for registering those changes we need to use 
+Python manage.py makemigrations
+Python manage.py migrate commands
+We can now be able to see the structure of the table in the database.
+
+In the Rest framework 
+Post method indicate create/Insert
+GET method indicate Retrieve/fetch
+Put method indicate update/edit
+
+Delete method indicate delete/remove
+
+So we will have situations like we need to change the format from json to python onto web/mobile
+Or from web/mobile to json. For these kind of cases we use serializers.
+Create a file names serializers.py and create a BookSerializer class which is responsible for this kind of conversion.
+from rest_framework import serializers
+from .models import Book
+
+class BookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = '__all__'
+
+Now we have to create viewsets.py file. This file responsible for list(),retrieve(),create(),update(),destroy() these kind of operations
+Now we can map these functions to routing using router.py
+from LMSOps.viewsets import BookViewset
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('book',BookViewset)
+
+
+
+
