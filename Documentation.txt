@@ -1,3 +1,12 @@
+Run with http://127.0.0.1:8000 url then the home page displays and then we can navigate through login and register page
+if the user logs in for the first time he/she can see the home page where it has list of books those are present in the Database
+Frome home page he can register and logs in where he/she will be directly redirecting to the Django rest framework and can perform operations.
+For getting the list of books http://127.0.0.1:8000/api/book/ 
+fill the form and click on the post then the new record will get inserted into the database also.
+For deleting and updating http://127.0.0.1:8000/api/book/<recordnum>/ this url helps. 
+please replace <recordnum> with the record that you wanted to delete or update.
+
+
 Initially check for pythpn and django versions and then set up a virtual environment and then set up Django for not to disturb any other folders or applications.
 Create a project “Django-admin startproject name”
 Cd name
